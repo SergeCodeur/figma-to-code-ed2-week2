@@ -1,5 +1,4 @@
 import useShippingStore from "@/store/useShippingMethode";
-import { useEffect } from "react";
 
 type ShippingMethodCardProps = {
   method: string;
@@ -19,9 +18,6 @@ const ShippingMethodCard = ({
     setSelectedShipping(method);
   };
 
-  useEffect(() => {
-    console.log("Selected Shipping Method:", selectedShipping);
-  }, [selectedShipping]);
   return (
     <div
       className={`p-3 rounded-xl border ${
