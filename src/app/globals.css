@@ -16,4 +16,16 @@
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
   }
+
+  .bg-green {
+    background-color: green;
+  }
+
+  .bg-olive {
+    background-color: olive;
+  }
+
+  .bg-ocean {
+    background-color: blue;
+  }
 }
