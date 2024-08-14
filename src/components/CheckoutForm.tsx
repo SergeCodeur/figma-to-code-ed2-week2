@@ -137,7 +137,7 @@ const CheckoutForm = ({ totalPrice }: { totalPrice: number }) => {
               label="Card number"
               placeholder="Card number"
             />
-            <Lock className="absolute right-3.5 top-1/2 -translate-y-1/2" />
+            <Lock className="absolute right-3.5 top-1/2 translate-y-[30%]" />
           </div>
           <div className="flex gap-3 mt-2 max-md:flex-col">
             <CustomFormField
