@@ -35,11 +35,13 @@ const ShoppingCart = ({ className }: ShoppingCartProps) => {
         onClick={redirectToOrders}
       >
         <OrderCart />
-        {totalItems > 0 && (
-          <span className="absolute -top-[7px] -right-3.5 w-5 h-5 rounded-full bg-black text-white text-xs-custom flex justify-center items-center">
-            {isMounted ? totalItems : " "}
-          </span>
-        )}
+        {isMounted
+          ? totalItems > 0 && (
+              <span className="absolute -top-[7px] -right-3.5 w-5 h-5 rounded-full bg-black text-white text-xs-custom flex justify-center items-center">
+                {isMounted ? totalItems : "0"}
+              </span>
+            )
+          : null}
       </button>
     </div>
   );
