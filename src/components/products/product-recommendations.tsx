@@ -10,7 +10,7 @@ const product = [
     title: "SUMMER SHIRT",
     price: {
       currencyCode: "$",
-      amount: 99,
+      amount: "99",
     },
   },
   {
@@ -20,7 +20,7 @@ const product = [
     title: "SUMMER SHIRT",
     price: {
       currencyCode: "$",
-      amount: 99,
+      amount: "99",
     },
   },
   {
@@ -30,7 +30,7 @@ const product = [
     title: "SUMMER SHIRT",
     price: {
       currencyCode: "$",
-      amount: 99,
+      amount: "99",
     },
   },
   {
@@ -40,7 +40,7 @@ const product = [
     title: "SUMMER SHIRT",
     price: {
       currencyCode: "$",
-      amount: 99,
+      amount: "99",
     },
   },
   {
@@ -50,7 +50,7 @@ const product = [
     title: "SUMMER SHIRT",
     price: {
       currencyCode: "$",
-      amount: 99,
+      amount: "99",
     },
   },
   {
@@ -60,7 +60,7 @@ const product = [
     title: "SUMMER SHIRT",
     price: {
       currencyCode: "$",
-      amount: 99,
+      amount: "99",
     },
   },
 ];
