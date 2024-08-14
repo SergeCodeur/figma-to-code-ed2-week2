@@ -5,6 +5,7 @@ const Plus = (props: SVGProps<SVGSVGElement>) => (
     width={20}
     height={20}
     fill="none"
+    viewBox="0 0 20 20"
     {...props}
   >
     <g stroke="#1D1D1D" strokeWidth={1.5} clipPath="url(#a)">
