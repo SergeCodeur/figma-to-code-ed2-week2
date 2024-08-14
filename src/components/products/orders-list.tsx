@@ -38,15 +38,14 @@ const Orderslist = ({
                   <tr key={productTitle} className="border-b border-light-gray">
                     <td className="py-5 flex gap-2.5 items-center">
                       <Image
-                        className="aspect-square rounded-lg"
+                        className="aspect-square rounded-lg max-sm:w-[45px] max-sm:h-[45px]"
                         src={product.image}
                         alt={product.title}
                         width={72}
                         height={72}
-                        style={{ width: "auto", height: "auto" }}
                       />
                       <div className="flex flex-col gap-0.5">
-                        <span className="md:text-sm text-xs-custom font-semibold">
+                        <span className="md:text-sm text-xs-custom font-semibold max-sm:w-[74px] truncate">
                           {product.title}
                         </span>
                         <span className="md:text-sm text-xs-custom font-medium text-dark-gray">
@@ -59,30 +58,30 @@ const Orderslist = ({
                     </td>
                     <td className="py-5">
                       <div className="flex items-center gap-2">
-                        <span className="flex justify-between px-3 items-center gap-1 w-[124px] h-11 rounded-full bg-light-gray/50">
+                        <span className="text-xs-custom md:text-sm flex justify-between px-3 items-center gap-1 h-6 sm:w-[76px] md:w-[124px] sm:h-8 md:h-11 rounded-full bg-light-gray/50">
                           <span
                             className="cursor-pointer"
                             onClick={() => decreaseQuantity(productTitle)}
                           >
-                            <Remove />
+                            <Remove className="max-xs:w-3 max-xs:h-3 max-sm:w-4 max-sm:h-4" />
                           </span>
                           {product.quantity}
                           <span
                             className="cursor-pointer"
                             onClick={() => increaseQuantity(productTitle)}
                           >
-                            <Plus />
+                            <Plus className="max-xs:w-3 max-xs:h-3 max-sm:w-4 max-sm:h-4" />
                           </span>
                         </span>
                         <span
-                          className="flex justify-center items-center h-11 w-11 rounded-full bg-light-gray/50 cursor-pointer"
+                          className="flex justify-center items-center w-6 h-6 sm:w-8 sm:h-8 md:h-11 md:w-11 rounded-full bg-light-gray/50 cursor-pointer"
                           onClick={() => removeFromCart(productTitle)}
                         >
-                          <Trash />
+                          <Trash className="max-sm:w-4 max-sm:h-4 max-xs:w-3 max-xs:h-3" />
                         </span>
                       </div>
                     </td>
-                    <td className="py-2 text-xs md:text-sm font-semibold">
+                    <td className="py-2 text-xs-custom sm:text-xs md:text-sm font-semibold">
                       {product.price.currencyCode} {totalPrice.toFixed(2)}
                     </td>
                   </tr>

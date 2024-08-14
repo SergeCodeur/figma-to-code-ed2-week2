@@ -110,7 +110,7 @@ export const ProductDetailCard = React.forwardRef<
                 {colorOptions.map((color, index) => (
                   <li key={index}>
                     <span
-                      className={`block w-7 h-7 rounded-full bg-${color
+                      className={`block w-7 h-7 rounded-full !bg-${color
                         .toLowerCase()
                         .replace(/ /g, "-")} cursor-pointer`}
                       onClick={() => handleColorClick(color)}
