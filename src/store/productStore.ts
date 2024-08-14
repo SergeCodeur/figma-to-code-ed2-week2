@@ -1,30 +1,5 @@
 import { create } from "zustand";
-
-type Product = {
-  title: string;
-  description: string;
-  images: {
-    edges: {
-      node: {
-        url: string;
-      };
-    }[];
-  };
-  variants: {
-    edges: {
-      node: {
-        price: {
-          amount: string;
-          currencyCode: string;
-        };
-        selectedOptions: {
-          name: string;
-          value: string;
-        }[];
-      };
-    }[];
-  };
-};
+import { Product } from "../types/product";
 
 interface ProductState {
   product: Product | null;
