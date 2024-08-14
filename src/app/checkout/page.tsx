@@ -4,6 +4,7 @@ import { SummaryItem } from "@/components/products/summary-items";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import ShippingMethodCard from "@/components/ui/shipping-method-card";
+import { useIsMounted } from "@/hooks/useIsMounted";
 import { useCartStore } from "@/store/cartStore";
 import useShippingStore from "@/store/useShippingMethode";
 import Image from "next/image";
@@ -13,6 +14,7 @@ const CheckOut = () => {
   const cart = useCartStore((state) => state.cart);
   const subtotal = useCartStore((state) => state.getSubtotal());
   const discount = useCartStore((state) => state.getDiscount());
+  const isMounted = useIsMounted();
   const selectedShipping = useShippingStore((state) => state.selectedShipping);
   const setSelectedShipping = useShippingStore(
     (state) => state.setSelectedShipping
@@ -60,38 +62,45 @@ const CheckOut = () => {
             </Link>
           </p>
           <ul className="space-y-3">
-            {Object.keys(cart).map((productTitle) => {
-              const product = cart[productTitle];
-              const totalPrice =
-                parseFloat(product.price.amount) * product.quantity;
-              return (
-                <li
-                  key={productTitle}
-                  className="flex justify-between items-center"
-                >
-                  <div className="flex gap-2.5">
-                    <Image
-                      className="aspect-square rounded-lg"
-                      src={product.image}
-                      alt={product.title}
-                      width={72}
-                      height={72}
-                    />
-                    <div className="flex flex-col justify-center">
-                      <span className="md:text-sm text-xs-custom font-semibold">
-                        {product.title}
-                      </span>
-                      <span className="md:text-sm text-xs-custom font-medium text-dark-gray">
-                        Color: Green - Size: Large
-                      </span>
+            {isMounted ? (
+              Object.keys(cart).map((productTitle) => {
+                const product = cart[productTitle];
+                const totalPrice =
+                  parseFloat(product.price.amount) * product.quantity;
+                return (
+                  <li
+                    key={productTitle}
+                    className="flex justify-between items-center"
+                  >
+                    <div className="flex gap-2.5">
+                      <Image
+                        className="aspect-square rounded-lg"
+                        src={product.image}
+                        alt={product.title}
+                        width={72}
+                        height={72}
+                        style={{ width: "auto", height: "auto" }}
+                      />
+                      <div className="flex flex-col justify-center">
+                        <span className="md:text-sm text-xs-custom font-semibold">
+                          {product.title}
+                        </span>
+                        <span className="md:text-sm text-xs-custom font-medium text-dark-gray">
+                          Color: Green - Size: Large
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                  <span className="md:text-sm text-xs-custom font-semibold">
-                    {product.price.currencyCode} {totalPrice.toFixed(2)}
-                  </span>
-                </li>
-              );
-            })}
+                    <span className="md:text-sm text-xs-custom font-semibold">
+                      {product.price.currencyCode} {totalPrice.toFixed(2)}
+                    </span>
+                  </li>
+                );
+              })
+            ) : (
+              <li className="flex justify-center items-center">
+                <p className="text-xs text-dark-gray">Loading...</p>
+              </li>
+            )}
           </ul>
 
           {/* discount form */}
@@ -117,8 +126,14 @@ const CheckOut = () => {
               to get better offer
             </span>
           </form>
-          <SummaryItem label="Subtotal" value={`$${subtotal.toFixed(2)}`} />
-          <SummaryItem label="Discount" value={`$${discount.toFixed(2)}`} />
+          <SummaryItem
+            label="Subtotal"
+            value={isMounted ? `$${subtotal.toFixed(2)}` : "$0.00"}
+          />
+          <SummaryItem
+            label="Discount"
+            value={isMounted ? `$${discount.toFixed(2)}` : "$0.00"}
+          />
 
           {/* divide */}
           <span className="block h-[1px] w-full bg-light-gray my-3"></span>
@@ -126,7 +141,7 @@ const CheckOut = () => {
           {/* total */}
           <SummaryItem
             label="Order total"
-            value={`$${orderTotal.toFixed(2)}`}
+            value={isMounted ? `$${orderTotal.toFixed(2)}` : "$0.00"}
             isTotal
           />
 
@@ -137,7 +152,7 @@ const CheckOut = () => {
                 key={method.method}
                 method={method.method}
                 details={method.details}
-                price={`$${method.price.toFixed(2)}`}
+                price={isMounted ? `$${method.price.toFixed(2)}` : "$0.00"}
                 onSelect={() => handleSelectShippingMethod(method.method)}
               />
             ))}
