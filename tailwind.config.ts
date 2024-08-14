@@ -66,6 +66,9 @@ const config = {
       borderRadius: {
         "4xl": "32px",
       },
+      padding: {
+        29: "124px",
+      },
       screens: {
         xs: "374px",
       },
