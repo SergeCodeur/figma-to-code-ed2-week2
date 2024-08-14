@@ -1,7 +1,6 @@
 "use client";
-import { Hamburger, OrderCart, Search } from "@/assets/icons";
+import { Hamburger, Search } from "@/assets/icons";
 import Logo from "@/assets/images/logo-dark.svg";
-import useRedirectToOrders from "@/hooks/useRedirectToOrders";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -10,8 +9,6 @@ import NavLinksRight from "./NavLinksRight";
 import NavlinksLeft from "./NavlinksLeft";
 
 const Navbar = () => {
-  const redirectToOrders = useRedirectToOrders();
-
   const [open, setOpen] = useState(false);
   const onClick = () => {
     setOpen(!open);
@@ -24,27 +21,18 @@ const Navbar = () => {
         <NavlinksLeft className="hidden lg:inline-flex " />
 
         <Link href="/">
-          <Image src={Logo} alt="logo" />
+          <Image src={Logo} alt="logo" priority />
         </Link>
 
         <div className="inline-flex gap-[18px] items-center">
           <NavLinksRight className="hidden lg:inline-flex" />
 
-          {/* Display OrderCart on Desktop */}
-          <ShoppingCart />
-
-          {/* Search */}
-          <button>
-            <Search />
-          </button>
-
-          {/* Display OrderCart Icon on Tablet and Above */}
-          <button
-            className="block cursor-pointer lg:hidden"
-            onClick={redirectToOrders}
-          >
-            <OrderCart />
-          </button>
+          <div className="flex gap-[18px] max-lg:flex-row-reverse">
+            <ShoppingCart />
+            <button>
+              <Search />
+            </button>
+          </div>
         </div>
       </nav>
 
