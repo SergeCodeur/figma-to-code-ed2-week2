@@ -4,18 +4,21 @@ type ShippingMethodCardProps = {
   method: string;
   details: string;
   price: number | string;
+  onSelect: () => void;
 };
 
 const ShippingMethodCard = ({
   method,
   details,
   price,
+  onSelect,
 }: ShippingMethodCardProps) => {
   const { selectedShipping, setSelectedShipping } = useShippingStore();
   const isSelected = selectedShipping === method;
 
   const handleChecked = () => {
     setSelectedShipping(method);
+    onSelect();
   };
 
   return (
