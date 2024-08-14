@@ -1,7 +1,7 @@
 "use client";
 import { Hamburger, OrderCart, Search } from "@/assets/icons";
 import Logo from "@/assets/images/logo-dark.svg";
-import useRedirectToOrders from "@/hooks/useRedirectToOrders ";
+import useRedirectToOrders from "@/hooks/useRedirectToOrders";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -54,7 +54,7 @@ const Navbar = () => {
           open
             ? "opacity-100 pointer-events-auto visible"
             : "opacity-0 pointer-events-none invisible"
-        } absolute z-50 inset-x-0 top-[124px] pt-[26px] w-full h-full bg-white transition-opacity duration-300`}
+        } absolute z-50 inset-x-0 top-[124px] pt-[26px] w-full h-[calc(100vh-124px)] bg-white transition-opacity duration-300`}
       >
         <div className="flex flex-col gap-[18px]">
           <NavlinksLeft className="lg:hidden inline-flex flex-col" />
