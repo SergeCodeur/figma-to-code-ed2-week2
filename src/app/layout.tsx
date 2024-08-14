@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${archivo.className} ${chillax.variable}`}>
-        <main className="bg-white">
+        <main className="bg-white pt-29">
           <Header />
           {children}
           <Footer />
