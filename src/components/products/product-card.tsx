@@ -15,7 +15,7 @@ export interface ProductCardProps {
   title: string;
   price: {
     currencyCode: number | string;
-    amount: number | string;
+    amount: string;
   };
 }
 
@@ -26,7 +26,6 @@ export const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
   ) => {
     const router = useRouter();
     const addToCart = useCartStore((state) => state.addToCart);
-
     const handleBuyNow = () => {
       router.push(
         "/products/" +
@@ -66,14 +65,17 @@ export const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
 
           {/* Shop button */}
           <div className="absolute flex justify-center items-end inset-0 bg-black/[23%] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-            <div className="flex justify-center items-end gap-1 w-full h-full pb-[18px]">
-              <Button className="text-black bg-white" onClick={handleAddToCart}>
+            <div className="flex justify-center items-end gap-1 w-full h-full pb-[18px] max-w-[286px]">
+              <Button
+                className="text-black bg-white text-sm"
+                onClick={handleAddToCart}
+              >
                 <ShoppingBag />
                 <span className="uppercase font-extrabold">Add to cart</span>
               </Button>
               <Button
                 variant="outline"
-                className="text-white border-white w-[141px] uppercase"
+                className="text-white border-white uppercase text-sm"
                 onClick={handleBuyNow}
               >
                 Buy now
@@ -82,7 +84,7 @@ export const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
           </div>
         </div>
         <div className="flex flex-col justify-between space-y-0.5">
-          <h3 className="text-2xl md:text-3xl font-semibold text-black uppercase">
+          <h3 className="text-2xl md:text-3xl font-semibold text-black uppercase truncate">
             {title}
           </h3>
           <span className="flex items-center gap-[2px] text-xl sm:text-2xxl font-bold text-dark-gray">
