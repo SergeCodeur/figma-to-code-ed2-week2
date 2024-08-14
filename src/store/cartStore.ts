@@ -20,6 +20,7 @@ interface CartState {
   getSubtotal: () => number;
   getDiscount: () => number;
   getOrderTotal: () => number;
+  getCheckoutOrderTotal: (shippingCost: number) => number;
 }
 
 export const useCartStore = create<CartState>((set, get) => ({
@@ -80,5 +81,11 @@ export const useCartStore = create<CartState>((set, get) => ({
     const subtotal = state.getSubtotal();
     const discount = state.getDiscount();
     return subtotal - discount;
+  },
+  getCheckoutOrderTotal: (shippingCost) => {
+    const state = get();
+    const subtotal = state.getSubtotal();
+    const discount = state.getDiscount();
+    return subtotal - discount + shippingCost;
   },
 }));
