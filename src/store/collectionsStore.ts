@@ -1,37 +1,5 @@
+import { Collection } from "@/types/product";
 import { create } from "zustand";
-
-type Product = {
-  title: string;
-  description: string;
-  images: {
-    edges: {
-      node: {
-        url: string;
-      };
-    }[];
-  };
-  variants: {
-    edges: {
-      node: {
-        price: {
-          amount: string;
-          currencyCode: string;
-        };
-      };
-    }[];
-  };
-};
-
-type Collection = {
-  node: {
-    title: string;
-    products: {
-      edges: {
-        node: Product;
-      }[];
-    };
-  };
-};
 
 interface CollectionState {
   collections: Collection[];
