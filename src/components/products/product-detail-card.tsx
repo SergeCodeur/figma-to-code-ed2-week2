@@ -1,13 +1,15 @@
 "use client";
 import { cn } from "@/lib/utils";
+import { useCartStore } from "@/store/cartStore";
 import { useProductStore } from "@/store/productStore";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import { Button } from "../ui/button";
 
 export interface ProductDetailCardProps {
   className?: string;
-  images: { [key: string]: string }; // Map des images par couleur
+  images: string[];
   title: string;
   price: {
     currencyCode: number | string;
@@ -36,6 +38,24 @@ export const ProductDetailCard = React.forwardRef<
     ref
   ) => {
     const { selectedColor, setSelectedColor } = useProductStore();
+    const addToCart = useCartStore((state) => state.addToCart);
+    const router = useRouter();
+
+    const handleAddToCart = () => {
+      addToCart({
+        title,
+        image: images[0],
+        price: {
+          currencyCode: currencyCode.toString(),
+          amount: amount.toString(),
+        },
+      });
+    };
+
+    const handleBuyNow = () => {
+      handleAddToCart();
+      router.push("/orders");
+    };
 
     useEffect(() => {
       if (colorOptions.length > 0 && !selectedColor) {
@@ -47,7 +67,7 @@ export const ProductDetailCard = React.forwardRef<
       setSelectedColor(color);
     };
 
-    const selectedImage = images[selectedColor];
+    // const selectedImage = images[selectedColor];
 
     return (
       <div
@@ -59,19 +79,13 @@ export const ProductDetailCard = React.forwardRef<
         {...props}
       >
         <div className="relative rounded-[32px] overflow-hidden">
-          {selectedImage ? (
-            <Image
-              src={selectedImage}
-              alt={title}
-              className="w-full h-full object-cover aspect-square"
-              width={579}
-              height={600}
-            />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gray-200">
-              <p>No image available for this color</p>
-            </div>
-          )}
+          <Image
+            src={images[0]}
+            alt={title}
+            className="w-full h-full object-cover aspect-square"
+            width={579}
+            height={600}
+          />
         </div>
         <div className="flex flex-col gap-7 lg:max-w-[579px] w-full">
           <div className="space-y-[18px]">
@@ -96,7 +110,9 @@ export const ProductDetailCard = React.forwardRef<
                 {colorOptions.map((color, index) => (
                   <li key={index}>
                     <span
-                      className={`block w-7 h-7 rounded-full bg-${color.toLowerCase()} cursor-pointer`}
+                      className={`block w-7 h-7 rounded-full bg-${color
+                        .toLowerCase()
+                        .replace(/ /g, "-")} cursor-pointer`}
                       onClick={() => handleColorClick(color)}
                     ></span>
                   </li>
@@ -120,13 +136,18 @@ export const ProductDetailCard = React.forwardRef<
 
             {/* Add to cart and buy button */}
             <div className="flex gap-3">
-              <Button className="w-full uppercase max-sm:h-11" size="lg">
+              <Button
+                className="w-full uppercase max-sm:h-11"
+                size="lg"
+                onClick={handleBuyNow}
+              >
                 Buy now
               </Button>
               <Button
                 className="w-full uppercase max-sm:h-11"
                 size="lg"
                 variant="outline"
+                onClick={handleAddToCart}
               >
                 Add to cart
               </Button>
