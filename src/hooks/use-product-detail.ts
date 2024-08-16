@@ -1,5 +1,5 @@
-import { useProductStore } from "@/store/productStore";
-import { fetchCollections } from "@/utils/fetchCollections";
+import { useProductStore } from "@/store/product-store";
+import { fetchCollections } from "@/utils/fetch-collections";
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
 
