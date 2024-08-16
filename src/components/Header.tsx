@@ -1,5 +1,5 @@
 "use client";
-import Navbar from "./navbar/navbar";
+import Navbar from "./navbar/Navbar";
 import PromoBanner from "./promo-banner";
 
 const Header = () => {
