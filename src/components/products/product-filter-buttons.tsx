@@ -1,5 +1,5 @@
 import { FilterTag } from "@/components/ui/filter-tag";
-import { useCollectionStore } from "@/store/collectionsStore";
+import { useCollectionStore } from "@/store/collections-store";
 
 const ProductFilterButtons = () => {
   const { selectedCategory, setSelectedCategory, categories } =
