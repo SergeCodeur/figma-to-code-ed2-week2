@@ -1,12 +1,12 @@
 "use client";
-import CheckoutForm from "@/components/CheckoutForm";
+import CheckoutForm from "@/components/checkout-form";
 import { SummaryItem } from "@/components/products/summary-items";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import ShippingMethodCard from "@/components/ui/shipping-method-card";
-import { useIsMounted } from "@/hooks/useIsMounted";
-import { useCartStore } from "@/store/cartStore";
-import useShippingStore from "@/store/useShippingMethode";
+import { useIsMounted } from "@/hooks/use-is-mounted";
+import { useCartStore } from "@/store/cart-store";
+import useShippingStore from "@/store/use-shipping-methode";
 import Image from "next/image";
 import Link from "next/link";
 
