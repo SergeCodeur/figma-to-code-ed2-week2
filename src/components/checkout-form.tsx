@@ -10,7 +10,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import useCheckoutForm from "@/hooks/useCheckoutForm";
+import useCheckoutForm from "@/hooks/use-checkout-form";
 import { cn } from "@/lib/utils";
 import CustomFormField from "./ui/form-field";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
