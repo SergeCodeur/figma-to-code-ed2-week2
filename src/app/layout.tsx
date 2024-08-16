@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Archivo } from "next/font/google";
 import localFont from "next/font/local";
-import Footer from "../components/footer";
-import Header from "../components/header";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
 import "./globals.css";
 
 const archivo = Archivo({
