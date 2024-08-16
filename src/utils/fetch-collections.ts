@@ -1,4 +1,3 @@
-// src\utils\fetchCollections.ts
 export const fetchCollections = async () => {
   try {
     const request = await fetch(
