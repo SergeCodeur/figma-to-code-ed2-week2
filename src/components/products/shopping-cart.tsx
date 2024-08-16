@@ -1,7 +1,7 @@
 "use client";
 import { OrderCart } from "@/assets/icons";
-import useRedirectToOrders from "@/hooks/useRedirectToOrders";
-import { useCartStore } from "@/store/cartStore";
+import useRedirectToOrders from "@/hooks/use-redirect-to-orders";
+import { useCartStore } from "@/store/cart-store";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
