@@ -1,4 +1,4 @@
-import useShippingStore from "@/store/useShippingMethode";
+import useShippingStore from "@/store/use-shipping-methode";
 
 type ShippingMethodCardProps = {
   method: string;
