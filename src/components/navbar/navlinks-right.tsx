@@ -1,7 +1,7 @@
 import { navLinksRight } from "@/constants/navLinks";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import UserMenu from "./UserMenu";
+import UserMenu from "./user-menu";
 
 const NavLinksRight = ({ className }: { className?: string }) => {
   return (
