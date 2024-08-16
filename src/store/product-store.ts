@@ -6,6 +6,8 @@ interface ProductState {
   setProduct: (product: Product) => void;
   selectedColor: string;
   setSelectedColor: (color: string) => void;
+  selectedSize: string;
+  setSelectedSize: (size: string) => void;
 }
 
 export const useProductStore = create<ProductState>((set) => ({
@@ -13,4 +15,6 @@ export const useProductStore = create<ProductState>((set) => ({
   setProduct: (product) => set({ product }),
   selectedColor: "",
   setSelectedColor: (color) => set({ selectedColor: color }),
+  selectedSize: "",
+  setSelectedSize: (size) => set({ selectedSize: size }),
 }));
