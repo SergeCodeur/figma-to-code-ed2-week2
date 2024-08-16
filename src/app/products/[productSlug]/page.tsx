@@ -1,8 +1,9 @@
 "use client";
 import { ProductDetailCard } from "@/components/products/product-detail-card";
 import ProductRecommendations from "@/components/products/product-recommendations";
-import useProductDetail from "@/hooks/useProductDetail";
-import { sizeMapping } from "@/utils/sizeMapping";
+import { Skeleton } from "@/components/ui/skeleton";
+import useProductDetail from "@/hooks/use-product-detail";
+import { sizeMapping } from "@/utils/size-mapping";
 
 const ProductDetail = () => {
   const { product } = useProductDetail();
@@ -20,7 +21,18 @@ const ProductDetail = () => {
     });
   });
 
-  if (!product) return <p>Loading...</p>;
+  if (!product)
+    return (
+      <section className="container pt-[76px] space-y-[72px] pb-24">
+        <div>
+          <Skeleton className="h-[400px]" />
+          <Skeleton className="w-full h-[40px] " />
+        </div>
+        <div>
+          <Skeleton className="w-full h-[40px]" />
+        </div>
+      </section>
+    );
 
   return (
     <section className="container pt-[76px] space-y-[72px] pb-24">
