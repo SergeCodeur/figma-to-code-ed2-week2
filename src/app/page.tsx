@@ -1,6 +1,6 @@
-import CollectionsSection from "@/components/home/CollectionsSection";
-import HeroSection from "@/components/home/HeroSection";
-import ProductSection from "@/components/home/ProductSection";
+import CollectionsSection from "@/components/home/collections-section";
+import HeroSection from "@/components/home/hero-section";
+import ProductSection from "@/components/home/product-section";
 
 export default function Home() {
   return (
