@@ -1,6 +1,6 @@
 "use client";
-import useRedirectToCheckout from "@/hooks/useRedirectToCheckout";
-import { useCartStore } from "@/store/cartStore";
+import useRedirectToCheckout from "@/hooks/use-redirect-to-checkout";
+import { useCartStore } from "@/store/cart-store";
 import { Button } from "../ui/button";
 import { SummaryItem } from "./summary-items";
 
