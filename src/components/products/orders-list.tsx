@@ -1,6 +1,6 @@
 "use client";
 import { Plus, Remove, Trash } from "@/assets/icons";
-import { useCartStore } from "@/store/cartStore";
+import { useCartStore } from "@/store/cart-store";
 import Image from "next/image";
 
 const Orderslist = ({
