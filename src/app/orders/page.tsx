@@ -2,8 +2,8 @@
 import { Trash } from "@/assets/icons";
 import OrderSummary from "@/components/products/order-summary";
 import Orderslist from "@/components/products/orders-list";
-import { useIsMounted } from "@/hooks/useIsMounted";
-import { useCartStore } from "@/store/cartStore";
+import { useIsMounted } from "@/hooks/use-is-mounted";
+import { useCartStore } from "@/store/cart-store";
 
 const OrdersSummary = () => {
   const totalItems = useCartStore((state) => state.getTotalItems());
