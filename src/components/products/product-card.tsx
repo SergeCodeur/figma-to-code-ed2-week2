@@ -1,9 +1,7 @@
-// src\components\products\product-card.tsx
-
 "use client";
 import { ShoppingBag } from "@/assets/icons";
 import { cn } from "@/lib/utils";
-import { useCartStore } from "@/store/cartStore";
+import { useCartStore } from "@/store/cart-store";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
