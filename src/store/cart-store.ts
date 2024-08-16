@@ -8,6 +8,8 @@ type Product = {
     currencyCode: string;
     amount: string;
   };
+  color: string;
+  size: string;
 };
 
 interface CartState {
