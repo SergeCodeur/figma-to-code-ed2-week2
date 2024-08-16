@@ -1,7 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { useCartStore } from "@/store/cartStore";
-import { useProductStore } from "@/store/productStore";
+import { useCartStore } from "@/store/cart-store";
+import { useProductStore } from "@/store/product-store";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
@@ -37,18 +37,21 @@ export const ProductDetailCard = React.forwardRef<
     },
     ref
   ) => {
-    const { selectedColor, setSelectedColor } = useProductStore();
+    const { selectedColor, setSelectedColor, selectedSize, setSelectedSize } =
+      useProductStore();
     const addToCart = useCartStore((state) => state.addToCart);
     const router = useRouter();
 
     const handleAddToCart = () => {
       addToCart({
         title,
-        image: images[0],
+        image: selectedImage || images[0],
         price: {
           currencyCode: currencyCode.toString(),
           amount: amount.toString(),
         },
+        color: selectedColor,
+        size: selectedSize,
       });
     };
 
@@ -61,13 +64,32 @@ export const ProductDetailCard = React.forwardRef<
       if (colorOptions.length > 0 && !selectedColor) {
         setSelectedColor(colorOptions[0]);
       }
-    }, [colorOptions, selectedColor, setSelectedColor]);
+      if (sizeOptions.length > 0 && !selectedSize) {
+        setSelectedSize(sizeOptions[0]);
+      }
+    }, [
+      colorOptions,
+      selectedColor,
+      setSelectedColor,
+      sizeOptions,
+      selectedSize,
+      setSelectedSize,
+    ]);
 
     const handleColorClick = (color: string) => {
       setSelectedColor(color);
     };
 
-    // const selectedImage = images[selectedColor];
+    const handleSizeClick = (size: string) => {
+      setSelectedSize(size);
+    };
+
+    const colorImageMap = colorOptions.reduce((map, color, index) => {
+      map[color.toLowerCase()] = images[index];
+      return map;
+    }, {} as { [key: string]: string });
+
+    const selectedImage = colorImageMap[selectedColor.toLowerCase()];
 
     return (
       <div
@@ -80,7 +102,7 @@ export const ProductDetailCard = React.forwardRef<
       >
         <div className="relative rounded-[32px] overflow-hidden">
           <Image
-            src={images[0]}
+            src={selectedImage || images[0]}
             alt={title}
             className="w-full h-full object-cover aspect-square"
             width={579}
@@ -110,9 +132,10 @@ export const ProductDetailCard = React.forwardRef<
                 {colorOptions.map((color, index) => (
                   <li key={index}>
                     <span
-                      className={`block w-7 h-7 rounded-full !bg-${color
-                        .toLowerCase()
-                        .replace(/ /g, "-")} cursor-pointer`}
+                      className={`block w-7 h-7 rounded-full cursor-pointer ${
+                        selectedColor === color ? "border-2 border-black" : ""
+                      }`}
+                      style={{ backgroundColor: color.toLowerCase() }}
                       onClick={() => handleColorClick(color)}
                     ></span>
                   </li>
@@ -126,7 +149,14 @@ export const ProductDetailCard = React.forwardRef<
               <ul className="flex items-center gap-1.5 md:gap-3">
                 {sizeOptions.map((size, index) => (
                   <li key={index}>
-                    <Button className="uppercase text-sm sm:text-lg md:text-2xl font-medium max-xs:h-9 max-xs:w-11 max-sm:h-[42px]">
+                    <Button
+                      className={`uppercase text-sm sm:text-lg md:text-2xl font-medium max-xs:h-9 max-xs:w-11 max-sm:h-[42px] ${
+                        selectedSize === size
+                          ? "bg-black text-white"
+                          : "bg-white text-black"
+                      }`}
+                      onClick={() => handleSizeClick(size)}
+                    >
                       {size}
                     </Button>
                   </li>
