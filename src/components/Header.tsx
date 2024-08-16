@@ -1,6 +1,6 @@
 "use client";
-import Navbar from "./navbar/Navbar";
-import PromoBanner from "./PromoBanner";
+import Navbar from "./navbar/navbar";
+import PromoBanner from "./promo-banner";
 
 const Header = () => {
   return (
