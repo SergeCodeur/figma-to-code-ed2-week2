@@ -1,6 +1,6 @@
 "use client";
-import { useCollectionStore } from "@/store/collectionsStore";
-import { fetchCollections } from "@/utils/fetchCollections";
+import { useCollectionStore } from "@/store/collections-store";
+import { fetchCollections } from "@/utils/fetch-collections";
 import Link from "next/link";
 import { useEffect } from "react";
 import { ProductCard } from "../products/product-card";
