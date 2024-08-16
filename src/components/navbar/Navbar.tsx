@@ -5,8 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import ShoppingCart from "../products/shopping-cart";
-import NavLinksRight from "./NavLinksRight";
-import NavlinksLeft from "./NavlinksLeft";
+import NavlinksLeft from "./navlinks-left";
+import NavLinksRight from "./navlinks-right";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
