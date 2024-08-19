@@ -23,13 +23,17 @@ const ProductDetail = () => {
 
   if (!product)
     return (
-      <section className="container pt-[76px] space-y-[72px] pb-24">
-        <div>
-          <Skeleton className="h-[400px]" />
-          <Skeleton className="w-full h-[40px] " />
-        </div>
-        <div>
-          <Skeleton className="w-full h-[40px]" />
+      <section className="container pt-[76px] space-y-[72px] pb-24 flex">
+        <div className="grid grid-cols-2 gap-4 w-full">
+          <Skeleton className="h-[580px] w-full" />
+          <div className="space-y-4 w-full">
+            <Skeleton className="w-full h-[86px]" />
+            <Skeleton className="w-full h-[54px]" />
+            <Skeleton className="w-full h-[40px]" />
+            <Skeleton className="w-full h-[50px]" />
+            <Skeleton className="w-full h-16 rounded-full" />
+            <Skeleton className="w-full h-[162px]" />
+          </div>
         </div>
       </section>
     );
