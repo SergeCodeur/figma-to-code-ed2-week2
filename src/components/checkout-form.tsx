@@ -1,23 +1,17 @@
 "use client";
 
-import { ArrowRight, Bank, Card, Lock } from "@/assets/icons";
+import { ArrowRight, Lock } from "@/assets/icons";
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form } from "@/components/ui/form";
 import useCheckoutForm from "@/hooks/use-checkout-form";
-import { cn } from "@/lib/utils";
+import { useIsMounted } from "@/hooks/use-is-mounted";
 import CustomFormField from "./ui/form-field";
-import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
+import PaymentMethodCard from "./ui/payement-method-card";
 import { Checkbox } from "./ui/react-checkbox";
 
 const CheckoutForm = ({ totalPrice }: { totalPrice: number }) => {
   const { form, onSubmit } = useCheckoutForm();
+  const isMounted = useIsMounted();
 
   return (
     <Form {...form}>
@@ -81,55 +75,7 @@ const CheckoutForm = ({ totalPrice }: { totalPrice: number }) => {
 
         <div>
           <h3 className="text-sm font-semibold mb-3">Select payment method</h3>
-          <FormField
-            control={form.control}
-            name="paymentMethod"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <RadioGroup
-                    onValueChange={field.onChange}
-                    defaultValue=""
-                    className="grid grid-cols-2 gap-5"
-                  >
-                    <FormItem
-                      className={cn(`space-y-0 relative rounded w-full`)}
-                    >
-                      <FormControl>
-                        <RadioGroupItem
-                          value="Debit/Credit-Card"
-                          className="opacity-0 absolute left-0 top-0"
-                        />
-                      </FormControl>
-                      <FormLabel className="h-[76px] p-3 gap-2 flex flex-col justify-center cursor-pointer border border-black rounded-xl">
-                        <Card />
-                        <span className="text-xs font-medium">
-                          Débit/Crédit Card
-                        </span>
-                      </FormLabel>
-                    </FormItem>
-                    <FormItem
-                      className={cn(`space-y-0 relative rounded w-full`)}
-                    >
-                      <FormControl>
-                        <RadioGroupItem
-                          value="Virtual-account"
-                          className="opacity-0 absolute left-0 top-0"
-                        />
-                      </FormControl>
-                      <FormLabel className="h-[76px] p-3 gap-2 flex flex-col justify-center cursor-pointer border border-dark-gray rounded-xl">
-                        <Bank />
-                        <span className="text-xs font-medium">
-                          Virtual account
-                        </span>
-                      </FormLabel>
-                    </FormItem>
-                  </RadioGroup>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <PaymentMethodCard />
           <div className="relative">
             <CustomFormField
               control={form.control}
@@ -172,7 +118,7 @@ const CheckoutForm = ({ totalPrice }: { totalPrice: number }) => {
             disabled={totalPrice === 0}
           >
             <span>Pay</span>
-            <span>${totalPrice}</span>
+            <span>${isMounted ? totalPrice : "0.00"}</span>
             <ArrowRight className="text-white" />
           </Button>
         </div>
