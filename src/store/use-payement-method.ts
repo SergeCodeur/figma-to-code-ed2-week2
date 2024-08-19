@@ -6,7 +6,7 @@ interface PaymentState {
 }
 
 const usePaymentStore = create<PaymentState>((set) => ({
-  paymentMethod: "",
+  paymentMethod: "Debit/Credit-Card",
   setPaymentMethod: (method) => set({ paymentMethod: method }),
 }));
 
