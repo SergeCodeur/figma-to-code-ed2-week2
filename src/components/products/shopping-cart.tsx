@@ -1,24 +1,20 @@
 "use client";
 import { OrderCart } from "@/assets/icons";
+import { useIsMounted } from "@/hooks/use-is-mounted";
 import useRedirectToOrders from "@/hooks/use-redirect-to-orders";
 import { useCartStore } from "@/store/cart-store";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 
 interface ShoppingCartProps {
   className?: string;
 }
 
 const ShoppingCart = ({ className }: ShoppingCartProps) => {
-  const [isMounted, setIsMounted] = useState(false);
-  const redirectToOrders = useRedirectToOrders();
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  const totalItems = useCartStore((state) => state.getTotalItems());
   const router = useRouter();
+  const isMounted = useIsMounted();
+  const redirectToOrders = useRedirectToOrders();
+  const totalItems = useCartStore((state) => state.getTotalItems());
+
   return (
     <div>
       {/* descktop */}
