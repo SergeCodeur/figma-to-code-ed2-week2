@@ -1,3 +1,7 @@
+export type Recommendation = {
+  node: Product;
+};
+
 export type Product = {
   title: string;
   description: string;
